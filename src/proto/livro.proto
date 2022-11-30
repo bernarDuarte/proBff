@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package Livro;
+
+service LivrariaService {
+    rpc getLivro (Header) returns (Todos) {}
+    rpc getLivroById (LivroById) returns (Livro) {}
+    rpc createLivro (Livro) returns (Livro) {}
+    rpc alterarLivro (Livro) returns (Livro) {}
+    rpc apagarLivro (LivroById) returns (Livro) {}
+}
+
+message Empty {}
+
+message Header {
+    optional string traceId = 1;
+    optional string className = 2;
+}
+
+message LivroById {
+    int32 id = 1;
+}
+
+message Todos {
+    repeated Livro todos = 1;
+}
+
+message Livro {
+  int32 id = 1;
+  string codigo = 2;
+  string nome = 3;
+  int32 preco = 4;
+}
